@@ -1,0 +1,23 @@
+qemu-system-x86_64 -enable-kvm -m 14000 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on \
+          -bios /root/seabios/out/bios.bin \
+	  -machine pc \
+	  -smp 4,cores=2 \
+	  -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
+	  -smbios type=2 \
+          -device vfio-pci,host=00:02.0,bus=pci.0,addr=0x2,x-igd-opregion=on \
+	  -drive id=disk0,file=/dev/disk/by-id/ata-PLEXTOR_PX-128,if=none \
+	  -drive id=disk1,file=/dev/disk/by-id/ata-Hitachi_HDT,if=none \
+	  -drive id=disk2,file=/dev/disk/by-id/ata-ST31000333AS,if=none \
+	  -device ahci,id=ahci \
+	  -device ide-drive,drive=disk0,bus=ahci.0 \
+	  -device ide-drive,drive=disk1,bus=ahci.1 \
+	  -device ide-drive,drive=disk2,bus=ahci.2 \
+          -drive format=raw,file=/dev/disk/by-id/usb-JetFlash_Transcend_8GB \
+	  -netdev tap,id=net0,ifname=tap0,script=no,downscript=no -device e1000-82545em,netdev=net0,id=net0,mac=52:54:00:c9:18:27 \
+          -nographic \
+	  -usb -usbdevice host:2a7a:0c18 \
+          -usb -usbdevice host:0a12:0001 \
+	  -vnc 0.0.0.0:1,password=off \
+	  -vga none \
+          -chardev file,id=seabios,path=/tmp/bios.log \
+          -device isa-debugcon,iobase=0x402,chardev=seabios \
