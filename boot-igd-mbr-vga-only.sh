@@ -5,7 +5,6 @@ qemu-system-x86_64 \
 	  -smp 4,cores=2 \
 	  -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
 	  -smbios type=2 \
-    -device vfio-pci,host=00:02.0,bus=pci.0,addr=0x2,x-vga=on,x-igd-gms=1,x-igd-opregion=on \
 	  -device ahci,id=ahci \
     -drive id=disk0,file=/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B77826366B7,format=raw,if=none \
     -device ide-drive,drive=disk0,bus=ahci.0 \
@@ -14,5 +13,3 @@ qemu-system-x86_64 \
     -usb -device usb-host,vendorid=0x1a2c,productid=0x2124 \
     -chardev file,id=seabios,path=/tmp/bios.log \
     -device isa-debugcon,iobase=0x402,chardev=seabios \
-    -nographic \
-    -vga none
