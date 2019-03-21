@@ -11,7 +11,7 @@ qemu-system-x86_64 \
 	  -device ahci,id=ahci \
     -drive id=disk0,file=/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B77826366B7,if=none,format=raw \
     -device ide-drive,drive=disk0,bus=ahci.0 \
-	  -netdev user,id=net0 -device e1000-82545em,netdev=net0,id=net0,mac=52:54:00:c9:18:27 \
+	  -netdev user,id=net0 -device vmxnet3,netdev=net0,id=net0,mac=52:54:00:c9:18:27 \
     -chardev file,id=seabios,path=/tmp/bios.log \
     -device isa-debugcon,iobase=0x402,chardev=seabios \
     -usb -device usb-host,vendorid=0x1ea7,productid=0x0066 \
