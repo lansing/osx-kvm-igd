@@ -18,10 +18,11 @@ LD_LIBRARY_PATH=/usr/local/lib $QEMU_LATEST \
     -drive id=disk0,file=/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B77826366B7,if=none,format=raw \
     -device ide-drive,drive=disk0,bus=ahci.0 \
     -chardev file,id=seabios,path=/tmp/bios.log \
-    -netdev user,id=net0 -device e1000-82545em,netdev=net0,id=net0,addr=0x18,mac=52:54:00:c9:18:27 \
+    -netdev user,id=net0 -device e1000-82545em,netdev=net0,id=net0,addr=0x05,mac=52:54:00:c9:18:27 \
     -device isa-debugcon,iobase=0x402,chardev=seabios \
-    -usb -device usb-host,vendorid=0x1ea7,productid=0x0066 \
-    -usb -device usb-host,vendorid=0x1a2c,productid=0x2124 \
+    -usb \
+    -device usb-host,vendorid=0x1ea7,productid=0x0066 \
+    -device usb-host,vendorid=0x1a2c,productid=0x2124 \
     -vga none \
     -serial none \
     -nographic
