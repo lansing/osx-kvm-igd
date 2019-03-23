@@ -15,9 +15,9 @@ LD_LIBRARY_PATH=/usr/local/lib $QEMU_SYSTEM \
 	  -smp 12,cores=2 \
 	  -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
 	  -smbios type=2 \
-    -device vfio-pci,host=00:02.0,bus=pci.0,addr=0x2,x-igd-opregion=on,romfile=/home/max/Code/OSX-IGD/vbios-fixed.dump \
+    -device vfio-pci,host=00:02.0,bus=pci.0,addr=0x2,x-igd-opregion=on,romfile=/home/max/Code/osx-kvm-igd/vbios.dump \
 	  -device ahci,id=ahci,addr=0x07 \
-    -drive id=disk0,file=/home/max/Code/OSX-IGD/clover-setup.qcow2,if=none,format=qcow2 \
+    -drive id=disk0,file=/home/max/Code/osx-kvm-igd/clover.qcow2,if=none,format=qcow2 \
     -device ide-drive,drive=disk0,bus=ahci.0 \
     -drive id=disk1,file=/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B77826366B7,if=none,format=raw \
     -device ide-drive,drive=disk1,bus=ahci.1 \
