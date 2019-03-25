@@ -22,7 +22,7 @@ LD_LIBRARY_PATH=/usr/local/lib $QEMU_SYSTEM \
     -drive id=disk1,file=/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B77826366B7,if=none,format=raw \
     -device ide-drive,drive=disk1,bus=ahci.1 \
     -chardev file,id=seabios,path=/tmp/bios.log \
-    -netdev tap,id=net0,ifname=tap0,script=no,downscript=no \
+    -netdev user,id=net0 \
     -device e1000-82545em,netdev=net0,id=net0,addr=0x05,mac=52:54:00:c9:19:82 \
     -device isa-debugcon,iobase=0x402,chardev=seabios \
     -usb \
