@@ -7,14 +7,28 @@ QEMU_LATEST=/home/max/Code/qemu/x86_64-softmmu/qemu-system-x86_64
 
 ROM_FILE_ARG=",romfile=/home/max/Code/osx-kvm-igd/vbios.dump"
 
+export QEMU_AUDIO_DRV='pa'
+export QEMU_PA_ADJUST_LATENCY_OUT='1'
+#export QEMU_PA_SERVER='unix:/tmp/pulse-socket'
+export QEMU_PA_SERVER='unix:/run/user/1000/pulse/native'
+export QEMU_AUDIO_DAC_FIXED_FREQ='48000'
+export QEMU_AUDIO_DAC_TRY_POLL='0'
+export QEMU_AUDIO_ADC_FIXED_FREQ='48000'
+export QEMU_AUDIO_ADC_TRY_POLL='0'
+export QEMU_AUDIO_ADC_FIXED_CHANNELS='2'
+export QEMU_ALSA_DAC_BUFFER_SIZE='2048'
+export QEMU_ALSA_DAC_PERIOD_SIZE='1024'
+export QEMU_AUDIO_TIMER_PERIOD='100'
+
 LD_LIBRARY_PATH=/usr/local/lib $QEMU_SYSTEM \
     -enable-kvm -m 16384 \
     -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS \
 	  -machine pc  \
-	  -smp 12,cores=2 \
+	  -smp 8,cores=2 \
 	  -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
 	  -smbios type=2 \
     -device vfio-pci,host=00:02.0,bus=pci.0,addr=0x2,x-igd-opregion=on \
+    -device ich9-intel-hda -device hda-duplex \
 	  -device ahci,id=ahci,addr=0x07 \
     -drive id=disk0,file=/home/max/Code/osx-kvm-igd/clover.qcow2,if=none,format=qcow2 \
     -device ide-drive,drive=disk0,bus=ahci.0 \
