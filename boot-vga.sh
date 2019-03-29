@@ -1,9 +1,8 @@
 MY_OPTIONS="+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
 
 QEMU_SYSTEM=qemu-system-x86_64
-MY_OPTIONS="+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
+QEMU_31=/home/max/Code/qemu-3.1/x86_64-softmmu/qemu-system-x86_64
 
-QEMU_SYSTEM=qemu-system-x86_64
 
 # using qemu v4.0.0-rc0 right now, built with libusb v1.0.19-442-g2a7372d
 QEMU_LATEST=/home/max/Code/qemu/x86_64-softmmu/qemu-system-x86_64

@@ -3,7 +3,9 @@ MY_OPTIONS="+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
 QEMU_SYSTEM=qemu-system-x86_64
 
 # using qemu v4.0.0-rc0 right now, built with libusb v1.0.19-442-g2a7372d
-QEMU_LATEST=/home/max/Code/qemu/x86_64-softmmu/qemu-system-x86_64
+QEMU_LATEST=/home/max/Code/qemu-4.0-rc/x86_64-softmmu/qemu-system-x86_64
+QEMU_31=/home/max/Code/qemu-3.1/x86_64-softmmu/qemu-system-x86_64
+
 
 ROM_FILE_ARG=",romfile=/home/max/Code/osx-kvm-igd/vbios.dump"
 
@@ -28,7 +30,6 @@ LD_LIBRARY_PATH=/usr/local/lib $QEMU_SYSTEM \
 	  -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
 	  -smbios type=2 \
     -device vfio-pci,host=00:02.0,bus=pci.0,addr=0x2,x-igd-opregion=on \
-    -device ich9-intel-hda -device hda-duplex \
 	  -device ahci,id=ahci,addr=0x07 \
     -drive id=disk0,file=/home/max/Code/osx-kvm-igd/clover.qcow2,if=none,format=qcow2 \
     -device ide-drive,drive=disk0,bus=ahci.0 \
