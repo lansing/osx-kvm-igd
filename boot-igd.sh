@@ -22,7 +22,7 @@ export QEMU_ALSA_DAC_BUFFER_SIZE='2048'
 export QEMU_ALSA_DAC_PERIOD_SIZE='1024'
 export QEMU_AUDIO_TIMER_PERIOD='100'
 
-LD_LIBRARY_PATH=/usr/local/lib $QEMU_SYSTEM \
+LD_LIBRARY_PATH=/usr/local/lib $QEMU_31 \
     -enable-kvm -m 16384 \
     -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS \
 	  -machine pc  \

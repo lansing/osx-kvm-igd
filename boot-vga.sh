@@ -7,11 +7,11 @@ QEMU_31=/home/max/Code/qemu-3.1/x86_64-softmmu/qemu-system-x86_64
 # using qemu v4.0.0-rc0 right now, built with libusb v1.0.19-442-g2a7372d
 QEMU_LATEST=/home/max/Code/qemu/x86_64-softmmu/qemu-system-x86_64
 
-LD_LIBRARY_PATH=/usr/local/lib $QEMU_SYSTEM \
+LD_LIBRARY_PATH=/usr/local/lib $QEMU_31 \
     -enable-kvm -m 16384 \
     -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS \
 	  -machine pc  \
-	  -smp 12,cores=2 \
+	  -smp 8,cores=2 \
 	  -device isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc" \
 	  -smbios type=2 \
 	  -device ahci,id=ahci,addr=0x07 \
@@ -20,7 +20,7 @@ LD_LIBRARY_PATH=/usr/local/lib $QEMU_SYSTEM \
     -drive id=disk1,file=/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B77826366B7,if=none,format=raw \
     -device ide-drive,drive=disk1,bus=ahci.1 \
     -chardev file,id=seabios,path=/tmp/bios.log \
-    -netdev user,id=net0 -device e1000-82545em,netdev=net0,id=net0,addr=0x05,mac=52:54:00:c9:19:82 \
+    -netdev user,id=net0 -device e1000-82545em,netdev=net0,id=net0,mac=52:54:00:c9:19:82 \
     -device isa-debugcon,iobase=0x402,chardev=seabios \
     -usb \
     -device usb-kbd -device usb-tablet \
