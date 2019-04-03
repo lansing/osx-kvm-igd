@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+
+import subprocess
+import sys
+import re
+
+FILENAME = "/tmp/last_bright"
+INC_ABS = 8
+
+if len(sys.argv) < 2:
+    print("usage: bright.py -u/-d")
+    exit(-1)
+
+if sys.argv[1] == "-u":
+    inc = INC_ABS
+elif sys.argv[1] == "-d":
+    inc = -INC_ABS
+else:
+    print("usage: bright.py -u/-d")
+    exit(-1)
+
+try:
+    with open(FILENAME, "r") as f:
+        current_lvl = int(f.read())
+except:
+    current_lvl_str = subprocess.check_output(['ddcutil', '-d', '1', 'getvcp', '10']).decode()
+    current_lvl = int(re.search(r'current value =\W+(\d+)', current_lvl_str).group(1))
+
+
+next_lvl = current_lvl + inc
+
+if next_lvl < 0:
+    next_lvl = 0
+
+subprocess.check_output(['ddcutil', '-d', '1', 'setvcp', '10', str(next_lvl)])
+
+with open(FILENAME, 'w') as f:
+    f.write(str(next_lvl))
