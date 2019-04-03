@@ -5,6 +5,8 @@ QEMU_SYSTEM=qemu-system-x86_64
 # using qemu v4.0.0-rc0 right now, built with libusb v1.0.19-442-g2a7372d
 QEMU_LATEST=/home/max/Code/qemu-4.0-rc/x86_64-softmmu/qemu-system-x86_64
 QEMU_31=/home/max/Code/qemu-3.1/x86_64-softmmu/qemu-system-x86_64
+QEMU_31_AUDIO=/home/max/Code/qemu-3.1-audio/x86_64-softmmu/qemu-system-x86_64
+
 
 
 ROM_FILE_ARG=",romfile=/home/max/Code/osx-kvm-igd/vbios.dump"
@@ -12,7 +14,7 @@ ROM_FILE_ARG=",romfile=/home/max/Code/osx-kvm-igd/vbios.dump"
 export QEMU_AUDIO_DRV='pa'
 export QEMU_PA_ADJUST_LATENCY_OUT='1'
 #export QEMU_PA_SERVER='unix:/tmp/pulse-socket'
-#export QEMU_PA_SERVER='unix:/run/user/1000/pulse/native'
+export QEMU_PA_SERVER='unix:/run/user/1000/pulse/native'
 export QEMU_AUDIO_DAC_FIXED_FREQ='48000'
 export QEMU_AUDIO_DAC_TRY_POLL='0'
 export QEMU_AUDIO_ADC_FIXED_FREQ='48000'
@@ -22,7 +24,7 @@ export QEMU_ALSA_DAC_BUFFER_SIZE='2048'
 export QEMU_ALSA_DAC_PERIOD_SIZE='1024'
 export QEMU_AUDIO_TIMER_PERIOD='100'
 
-LD_LIBRARY_PATH=/usr/local/lib $QEMU_31 \
+LD_LIBRARY_PATH=/usr/local/lib $QEMU_31_AUDIO \
     -enable-kvm -m 16384 \
     -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS \
 	  -machine pc  \
