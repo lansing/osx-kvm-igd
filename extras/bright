@@ -3,6 +3,7 @@
 import subprocess
 import sys
 import re
+from subprocess import Popen, PIPE, STDOUT
 
 FILENAME = "/tmp/last_bright"
 INC_ABS = 8
@@ -32,7 +33,7 @@ next_lvl = current_lvl + inc
 if next_lvl < 0:
     next_lvl = 0
 
-subprocess.check_output(['ddcutil', '-d', '1', 'setvcp', '10', str(next_lvl)])
+Popen(['ddcutil', '-d', '1', 'setvcp', '10', str(next_lvl)], stdin=None, stdout=None, stderr=None, close_fds=True, shell=False)
 
 with open(FILENAME, 'w') as f:
     f.write(str(next_lvl))
