@@ -30,8 +30,8 @@ LD_LIBRARY_PATH=/usr/local/lib $QEMU_SYSTEM \
 	  -machine pc  \
 	  -smp 8,cores=2 \
 	  -smbios type=2 \
-    -device vfio-pci,host=00:02.0,bus=pci.0,addr=0x02,x-igd-opregion=on \
-    -device vfio-pci,host=00:16.0,bus=pci.0,addr=0x10 \
+    -device vfio-pci,host=01:00.0,bus=pci.0,addr=0x16,romfile=/home/max/Code/osx-kvm-igd/wx-4100.rom \
+    -device vfio-pci,host=02:00.0,bus=pci.0,addr=0x15,x-msix-relocation=bar2 \
     -device ich9-intel-hda -device hda-duplex \
 	  -device ahci,id=ahci,addr=0x07 \
     -drive id=disk0,file=/home/max/Code/osx-kvm-igd/clover.qcow2,if=none,format=qcow2 \
@@ -44,7 +44,6 @@ LD_LIBRARY_PATH=/usr/local/lib $QEMU_SYSTEM \
     -device isa-debugcon,iobase=0x402,chardev=seabios \
     -object input-linux,id=mouse1,evdev=/dev/input/by-id/usb-Logitech_USB-PS_2_Trackball-event-mouse \
     -object input-linux,id=kbd1,evdev=/dev/input/by-id/usb-04d9_USB-HID_Keyboard-event-kbd,grab_all=on,repeat=on \
-    -vga none \
+    -vga std \
     -serial none \
-    -nographic
 
