@@ -11,6 +11,7 @@
 # NOTE: Tweak the "MY_OPTIONS" line in case you are having booting problems!
 ############################################################################
 
+
 MY_OPTIONS="+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
 
 qemu-system-x86_64 -enable-kvm -m 16384 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS\
@@ -23,6 +24,8 @@ qemu-system-x86_64 -enable-kvm -m 16384 -cpu Penryn,kvm=on,vendor=GenuineIntel,+
     -device vfio-pci,host=02:00.0,x-msix-relocation=bar2 \
     -drive id=disk1,file=/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B77826366B7,if=none,format=raw \
     -device ide-drive,drive=disk1,bus=ide.0 \
+    -drive id=disk0,file=/home/max/Code/osx-kvm-igd/clover_uefi.qcow2,if=none,format=qcow2 \
+    -device ide-drive,drive=disk0,bus=ide.1 \
     -netdev tap,id=net0,ifname=tap0,script=no,downscript=no \
     -device vmxnet3,netdev=net0,id=net0,addr=0x05,mac=52:54:00:c9:18:27 \
     -object input-linux,id=mouse1,evdev=/dev/input/by-id/usb-Logitech_USB-PS_2_Trackball-event-mouse \
