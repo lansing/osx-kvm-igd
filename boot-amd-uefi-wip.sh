@@ -25,13 +25,16 @@ $QEMU_4 -enable-kvm -m 16384 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmwa
 	  -smp 12,cores=2 \
 	  -drive if=pflash,format=raw,readonly,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_CODE.fd \
 	  -drive if=pflash,format=raw,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_VARS-3840x2160.fd \
-    -device vfio-pci,host=01:00.0,addr=0x15,x-vga=on,romfile=/home/max/Code/osx-kvm-igd/wx-4100.rom \
-    -drive id=disk1,file=/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B77826366B7,if=none,format=raw \
+    -device vfio-pci,host=03:00.0,x-vga=on,romfile=/home/max/Code/osx-kvm-igd/wx-4100.rom  \
+    -device vfio-pci,host=72:00.0,x-msix-relocation=bar2 \
+-drive id=disk1,file=/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B77826366B7,if=none,format=raw \
     -device ide-drive,drive=disk1,bus=ide.0 \
     -drive id=disk0,file=/home/max/Code/osx-kvm-igd/clover_uefi.qcow2,if=none,format=qcow2 \
     -device ide-drive,drive=disk0,bus=ide.1 \
-    -object input-linux,id=mouse1,evdev=/dev/input/by-id/usb-Logitech_USB-PS_2_Trackball-event-mouse \
+    -netdev bridge,id=net0,br=br0,"helper=/usr/lib/qemu/qemu-bridge-helper" \
+    -device vmxnet3,netdev=net0,id=net0,addr=0x05,mac=52:54:00:c9:18:27 \
     -object input-linux,id=kbd1,evdev=/dev/input/by-id/usb-04d9_USB-HID_Keyboard-event-kbd,grab_all=on,repeat=on \
+    -object input-linux,id=mouse1,evdev=/dev/input/by-id/usb-Logitech_USB-PS_2_Trackball-event-mouse \
 	  -monitor stdio \
     -serial none \
     -vga none \
