@@ -11,14 +11,20 @@
 # NOTE: Tweak the "MY_OPTIONS" line in case you are having booting problems!
 ############################################################################
 
+QEMU_SYSTEM=qemu-system-x86_64
+
+QEMU_31=/home/max/Code/qemu-3.1/x86_64-softmmu/qemu-system-x86_64
+QEMU_31_AUDIO=/home/max/Code/qemu-3.1-audio/x86_64-softmmu/qemu-system-x86_64
+QEMU_4=/home/max/Code/qemu-4.0.0/build/x86_64-softmmu/qemu-system-x86_64
+
 
 MY_OPTIONS="+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
 
-qemu-system-x86_64 -enable-kvm -m 16384 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS\
+$QEMU_4 -enable-kvm -m 16384 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS\
 	  -machine pc-q35-2.11 \
 	  -smp 12,cores=2 \
 	  -drive if=pflash,format=raw,readonly,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_CODE.fd \
-	  -drive if=pflash,format=raw,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_VARS.fd \
+	  -drive if=pflash,format=raw,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_VARS-3840x2160.fd \
     -device vfio-pci,host=01:00.0,addr=0x16,multifunction=on,x-vga=on,romfile=/home/max/Code/osx-kvm-igd/wx-4100.rom \
     -device vfio-pci,host=01:00.1,addr=0x17 \
     -device vfio-pci,host=02:00.0,x-msix-relocation=bar2 \
