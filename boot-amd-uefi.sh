@@ -32,7 +32,7 @@ $QEMU_4 -enable-kvm -m 16384 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmwa
     -device ide-drive,drive=disk1,bus=ide.0 \
     -drive id=disk0,file=/home/max/Code/osx-kvm-igd/clover_uefi.qcow2,if=none,format=qcow2 \
     -device ide-drive,drive=disk0,bus=ide.1 \
-    -netdev tap,id=net0,ifname=tap0,script=no,downscript=no \
+    -netdev bridge,id=net0,br=br0,"helper=/usr/lib/qemu/qemu-bridge-helper" \
     -device vmxnet3,netdev=net0,id=net0,addr=0x05,mac=52:54:00:c9:18:27 \
     -object input-linux,id=mouse1,evdev=/dev/input/by-id/usb-Logitech_USB-PS_2_Trackball-event-mouse \
     -object input-linux,id=kbd1,evdev=/dev/input/by-id/usb-04d9_USB-HID_Keyboard-event-kbd,grab_all=on,repeat=on \
