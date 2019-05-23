@@ -17,6 +17,7 @@ QEMU_31=/mnt/home/max/Code/qemu-3.1/x86_64-softmmu/qemu-system-x86_64
 QEMU_31_AUDIO=/home/max/Code/qemu-3.1-audio/x86_64-softmmu/qemu-system-x86_64
 QEMU_4=/mnt/home/max/Code/qemu/x86_64-softmmu/qemu-system-x86_64
 
+echo 1 > /sys/module/kvm/parameters/ignore_msrs
 
 MY_OPTIONS="+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
 
@@ -26,9 +27,9 @@ $QEMU_SYSTEM -enable-kvm -m 8192 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,
     -smp 4,cores=2 \
     -drive if=pflash,format=raw,readonly,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_CODE.fd \
     -drive if=pflash,format=raw,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_VARS-3840x2160.fd \
-    -device vfio-pci,host=01:00.0,multifunction=on,x-vga=on,romfile=/home/max/Code/osx-kvm-igd/wx-4100.rom  \
-    -device vfio-pci,host=01:00.1 \
-    -device vfio-pci,host=70:00.0,x-msix-relocation=bar2 \
+    -device vfio-pci,host=03:00.0,multifunction=on,x-vga=on,romfile=/home/max/Code/osx-kvm-igd/wx-4100.rom  \
+    -device vfio-pci,host=03:00.1 \
+    -device vfio-pci,host=72:00.0,x-msix-relocation=bar2 \
     -drive id=clover,file=/home/max/Code/osx-kvm-igd/clover_uefi.qcow2,if=none,format=qcow2 \
     -device ide-drive,drive=clover,bus=ide.0  \
     -object input-linux,id=mouse1,evdev=/dev/input/by-id/usb-Logitech_USB-PS_2_Trackball-event-mouse \
