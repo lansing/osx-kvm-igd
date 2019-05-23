@@ -22,9 +22,9 @@ echo 1 > /sys/module/kvm/parameters/ignore_msrs
 MY_OPTIONS="+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
 
 #LD_LIBRARY_PATH=/mnt/usr/local/lib $QEMU_31
-$QEMU_SYSTEM -enable-kvm -m 8192 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS\
-    -machine pc-q35-2.11 \
-    -smp 4,cores=2 \
+$QEMU_SYSTEM -enable-kvm -m 16384 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS\
+    -machine pc-q35-4.0 \
+    -smp 12,cores=2 \
     -drive if=pflash,format=raw,readonly,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_CODE.fd \
     -drive if=pflash,format=raw,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_VARS-3840x2160.fd \
     -device vfio-pci,host=02:00.0,multifunction=on,x-vga=on,romfile=/home/max/Code/osx-kvm-igd/wx-4100.rom  \
