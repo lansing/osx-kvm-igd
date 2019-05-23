@@ -30,6 +30,7 @@ $QEMU_SYSTEM -enable-kvm -m 8192 -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,
     -device vfio-pci,host=02:00.0,multifunction=on,x-vga=on,romfile=/home/max/Code/osx-kvm-igd/wx-4100.rom  \
     -device vfio-pci,host=02:00.1 \
     -device vfio-pci,host=72:00.0,x-msix-relocation=bar2 \
+    -device vfio-pci,host=06:00.0 \
     -drive id=clover,file=/home/max/Code/osx-kvm-igd/clover_uefi.qcow2,if=none,format=qcow2 \
     -device ide-drive,drive=clover,bus=ide.0  \
     -netdev user,id=net0 \
