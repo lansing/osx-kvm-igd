@@ -32,7 +32,7 @@ export QEMU_PA_SERVER=/run/user/1000/pulse/native
 $QEMU_SYSTEM -enable-kvm -m 16384 -mem-path /dev/hugepages -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS\
     -machine pc-q35-4.0 \
     -smp 4,cores=2 \
-    -drive if=pflash,format=raw,readonly,file=$OVMF_TEST \
+    -drive if=pflash,format=raw,readonly,file=$OVMF_MINE \
     -drive if=pflash,format=raw,file=/home/max/Code/osx-kvm-igd/OVMF/OVMF_VARS-3840x2160.fd \
     -device vfio-pci,host=02:00.0,multifunction=on,x-vga=on,romfile=/home/max/Code/osx-kvm-igd/wx-4100.rom  \
     -device vfio-pci,host=02:00.1 \
