@@ -39,8 +39,8 @@ $QEMU_SYSTEM -enable-kvm -m 16384 -mem-path /dev/hugepages -cpu Penryn,kvm=on,ve
     -device vfio-pci,host=72:00.0,x-msix-relocation=bar2 \
     -device vfio-pci,host=06:00.0 \
     -device vfio-pci,host=05:00.0 \
-    -drive id=clover,file=/home/max/Code/osx-kvm-igd/clover_uefi.qcow2,if=none,format=qcow2 \
-    -device ide-drive,drive=clover,bus=ide.0  \
+    -drive id=clover_new,file=/home/max/Code/osx-kvm-igd/CloverNG.qcow2,if=none,format=qcow2 \
+    -device ide-drive,drive=clover_new,bus=ide.0  \
     -netdev user,id=net0 \
     -device e1000-82545em,netdev=net0,id=net0,addr=0x08,mac=52:54:00:c9:19:82 \
     -object input-linux,id=mouse1,evdev=/dev/input/by-id/usb-Logitech_USB-PS_2_Trackball-event-mouse \
