@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+DISPLAY=1
+
+DP=15
+MDP=16
+HDMI=17
+
+TARGET=$1
+
+if [ "$TARGET" == 'dp' ]; then
+  TARGET_ID=$DP
+elif [ "$TARGET" == 'mdp' ]; then
+  TARGET_ID=$MDP
+elif [ "$TARGET" == 'hdmi' ]; then
+  TARGET_ID=$HDMI
+else
+  echo "do not support target $TARGET, options: dp,mdp,hdmi"
+  exit
+fi
+
+echo "switching to $TARGET ($TARGET_ID)"
+
+/usr/local/bin/ddcctl -d 1 -i $TARGET_ID
+
